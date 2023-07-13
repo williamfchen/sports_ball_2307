@@ -40,9 +40,27 @@ class Team
     roster.each do |player|
       total_value += player.total_cost
     end
-
     {"total_value" => total_value, "player_count" => player_count}
-
-
   end
+
+  def average_cost_of_player
+    total_value = 0
+    roster.each do |player|
+      total_value += player.total_cost
+    end
+    avg_cost = total_value/player_count.to_f
+    # I'm having trouble formatting the avg_cost. numerically it's correct
+  end
+
+  def players_by_last_name
+    sorted_players = roster.sort_by do |player|
+      player.last_name
+    end
+    last_names = sorted_players.map do |player|
+      player.last_name
+    end
+    last_names.join(", ")
+  end
+
+
 end
