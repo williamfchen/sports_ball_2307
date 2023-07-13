@@ -15,4 +15,34 @@ class Team
     @roster << player
   end
 
+  def long_term_players
+    long_list = []
+    roster.each do |player|
+      if player.contract_length > 24
+        long_list << player
+      end
+    end
+    long_list
+  end
+
+  def short_term_players
+    short_list = []
+    roster.each do |player|
+      if player.contract_length <= 24
+        short_list << player
+      end
+    end
+    short_list
+  end
+
+  def details
+    total_value = 0
+    roster.each do |player|
+      total_value += player.total_cost
+    end
+
+    {"total_value" => total_value, "player_count" => player_count}
+
+
+  end
 end
